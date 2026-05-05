@@ -25,13 +25,13 @@ musik.remove('README.md')
 musik.remove('.git')
 mode = int(input("Выбери режим 1 - повторение, 2 - проверка знаний, 3 - экзамен: "))
 i = 0
+print(len(musik))
 random.shuffle(musik)
-deleted = []
 while True:
-    if not musik:
+    if i == len(musik):
+        random.shuffle(musik)
+        print("Все 20 произведений прослушаны")
         i = 0
-        musik = random.shuffle(deleted)
-        deleted = musik
     player.init()
     sound = musik[i]
     print(sound)
