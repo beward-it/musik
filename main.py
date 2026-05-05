@@ -1,8 +1,8 @@
-import pyglet
-from pyglet.window import mouse
 import pygame.mixer as player
 import os
 import random
+"""from pyglet.window import mouse
+import pyglet
 wind = pyglet.window.Window()
 width, height = wind.size
 button1 = pyglet.shapes.Rectangle(0, 0 , 20, 20)
@@ -17,14 +17,22 @@ def on_draw():
     button1.draw()
     button2.draw()
     button3.draw()
-pyglet.app.run()
+pyglet.app.run()"""
 musik = os.listdir()
 musik.remove('main.py')
+musik.remove('.gitattributes')
+musik.remove('README.md')
 mode = int(input("Выбери режим 1 - повторение, 2 - проверка знаний, 3 - экзамен: "))
 i = 0
+random.shuffle(musik)
+deleted = []
 while True:
+    if not musik:
+        musik = random.shuffle(deleted)
+        deleted.clear()
+    i += 1
     player.init()
-    sound = random.choice(musik)
+    sound = musik[0]
     zvuk = player.Sound(sound)
     zvuk.play()
     number, autor, name = sound.split("_")
@@ -37,7 +45,6 @@ while True:
         else:
             print(f"Неверно! Это номер {number}, автор - {autor}, название - {name}.")
     else:
-        i += 1
         result = 0
         if number == input("Номер произведения: "):
             result += 1
@@ -53,6 +60,7 @@ while True:
             print(f"Ваш результат {result} / 20. Ваша оценка - {grade}.")
             break
     zvuk.stop()
+    deleted.append(musik.pop(0))
 @wind.event
 def on_draw():
     pyglet.shapes.Rectangle(500, 500, 500, 500)
