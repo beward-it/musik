@@ -22,6 +22,7 @@ musik = os.listdir()
 musik.remove('main.py')
 musik.remove('.gitattributes')
 musik.remove('README.md')
+musik.remove('.git')
 mode = int(input("Выбери режим 1 - повторение, 2 - проверка знаний, 3 - экзамен: "))
 i = 0
 random.shuffle(musik)
@@ -30,9 +31,10 @@ while True:
     if not musik:
         i = 0
         musik = random.shuffle(deleted)
-        deleted.clear()
+        deleted = musik
     player.init()
     sound = musik[i]
+    print(sound)
     zvuk = player.Sound(sound)
     zvuk.play()
     number, autor, name = sound.split("_")
