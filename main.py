@@ -28,11 +28,11 @@ random.shuffle(musik)
 deleted = []
 while True:
     if not musik:
+        i = 0
         musik = random.shuffle(deleted)
         deleted.clear()
-    i += 1
     player.init()
-    sound = musik[0]
+    sound = musik[i]
     zvuk = player.Sound(sound)
     zvuk.play()
     number, autor, name = sound.split("_")
@@ -60,8 +60,8 @@ while True:
             print(f"Ваш результат {result} / 20. Ваша оценка - {grade}.")
             break
     zvuk.stop()
-    deleted.append(musik.pop(0))
-@wind.event
+    i += 1
+"""@wind.event
 def on_draw():
     pyglet.shapes.Rectangle(500, 500, 500, 500)
-pyglet.app.run()
+pyglet.app.run()"""
