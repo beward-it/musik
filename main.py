@@ -23,10 +23,12 @@ musik.remove('main.py')
 musik.remove('.gitattributes')
 musik.remove('README.md')
 musik.remove('.git')
+musik.remove('.vscode')
 mode = int(input("Выбери режим 1 - повторение, 2 - проверка знаний, 3 - экзамен: "))
 i = 0
 result = 0
 random.shuffle(musik)
+print(len(musik))
 while True:
     if i == len(musik):
         random.shuffle(musik)
@@ -42,7 +44,9 @@ while True:
                 grade = 4
             print(f"Ваш результат {result} / 20. Ваша оценка - {grade}.")
             result = 0
+        i = 0
     player.init()
+    print(i)
     sound = musik[i]
     zvuk = player.Sound(sound)
     zvuk.play()
